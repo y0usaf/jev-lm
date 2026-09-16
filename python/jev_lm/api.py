@@ -77,7 +77,7 @@ class JevClient:
         timeout: float = 120.0,
         retries: int = 4,
         max_calls: int = 0,
-        cache_dir: str | None = "~/.cache/jev-cli",
+        cache_dir: str | None = "~/.cache/jev-lm",
         verbose: bool = False,
     ) -> None:
         self._key = api_key(key, key_path)

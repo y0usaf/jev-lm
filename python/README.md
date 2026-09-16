@@ -1,4 +1,4 @@
-# jev-cli
+# Jev-LM
 
 A word-level language model whose output layer is a Jev `Choice` question. Jev never
 emits text, so everything an LLM normally hides lives in this code: the tokenizer, the
@@ -32,17 +32,17 @@ context is not carrying its weight.
 ## Commands
 
 ```bash
-cd ~/sandbox/jev-cli
-python3 -m jev_cli probe "the capital of france is"          # next-word distribution
-python3 -m jev_cli verify "the capital of france is" "paris" "london"
-python3 -m jev_cli gen "the little dog" --words 18 --trace
-python3 -m jev_cli gen "she went to the door" --draft --trace # n-gram drafter + Noul verification
-python3 -m jev_cli eval --file jev_cli/data/heldout_en.txt --positions 60
+cd ~/sandbox/jev-lm
+python3 -m jev_lm probe "the capital of france is"          # next-word distribution
+python3 -m jev_lm verify "the capital of france is" "paris" "london"
+python3 -m jev_lm gen "the little dog" --words 18 --trace
+python3 -m jev_lm gen "she went to the door" --draft --trace # n-gram drafter + Noul verification
+python3 -m jev_lm eval --file jev_lm/data/heldout_en.txt --positions 60
 ```
 
 The key comes from `TYPESAFE_API_KEY`, or from `~/Tokens/TYPESAFE_API_KEY.txt` by
 default. Set `TYPESAFE_API_KEY_FILE` to point elsewhere. Answers are cached in
-`~/.cache/jev-cli`, so re-running an eval costs nothing.
+`~/.cache/jev-lm`, so re-running an eval costs nothing.
 
 Useful flags:
 
@@ -100,12 +100,12 @@ score the narrowed question yet, so its effect on bits/token is unmeasured.
 ## Files
 
 ```
-jev_cli/api.py     HTTP client, retries, token accounting, answer cache
-jev_cli/vocab.py   vocabulary, rendering, tokenizing, masking rules
-jev_cli/lm.py      the generation loop: one request per step
-jev_cli/draft.py   n-gram drafter, chunk verification, narrowed-option candidates
-jev_cli/eval.py    bits/token against a unigram baseline
-jev_cli/data/      vocabulary, drafter corpus, held-out text
+jev_lm/api.py      HTTP client, retries, token accounting, answer cache
+jev_lm/vocab.py    vocabulary, rendering, tokenizing, masking rules
+jev_lm/lm.py       the generation loop: one request per step
+jev_lm/draft.py    n-gram drafter, chunk verification, narrowed-option candidates
+ev_lm/eval.py      bits/token against a unigram baseline
+ev_lm/data/       vocabulary, drafter corpus, held-out text
 ```
 
 ## What this is not

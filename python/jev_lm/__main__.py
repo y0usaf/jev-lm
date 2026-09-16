@@ -18,7 +18,7 @@ def build(args: argparse.Namespace) -> JevClient:
         model=args.model,
         max_calls=args.max_calls,
         verbose=args.verbose,
-        cache_dir=None if args.no_cache else "~/.cache/jev-cli",
+        cache_dir=None if args.no_cache else "~/.cache/jev-lm",
     )
 
 
@@ -105,7 +105,7 @@ def cmd_eval(args: argparse.Namespace) -> int:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(prog="jev-cli", description="A language model whose output layer is Jev.")
+    parser = argparse.ArgumentParser(prog="jev-lm", description="A language model whose output layer is Jev.")
     parser.add_argument("--model", default="jev-latest")
     parser.add_argument("--vocab", default=None, help="vocabulary file, one token per line")
     parser.add_argument("--corpus", default=None, help="corpus for the drafter and the unigram baseline")

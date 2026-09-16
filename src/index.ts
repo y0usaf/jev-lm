@@ -1,8 +1,8 @@
 /**
- * jev-cli: a word-level language model whose output layer is Jev.
+ * Jev-LM: a word-level language model whose output layer is Jev.
  *
  * ```ts
- * import { JevClient, Vocab, WordLM, Drafter } from "jev-cli";
+ * import { JevClient, Vocab, WordLM, Drafter } from "jev-lm";
  *
  * const client = new JevClient();
  * const vocab = Vocab.load();

@@ -55,10 +55,10 @@ const COMMAND_FLAGS: Record<string, FlagSpec> = {
   eval: { "--file": "string", "--positions": "string", "--rows": "string" },
 };
 
-const USAGE = `jev-cli: a word-level language model whose output layer is Jev
+const USAGE = `Jev-LM: a word-level language model whose output layer is Jev
 
 Usage
-  jev-cli [global flags] <command> [flags] [args]
+  jev-lm [global flags] <command> [flags] [args]
 
 Commands
   probe <prompt>               show the next-word distribution for a prompt
@@ -98,7 +98,7 @@ eval flags
 Environment
   TYPESAFE_API_KEY        the API key
   TYPESAFE_API_KEY_FILE   file holding the key, default ~/Tokens/TYPESAFE_API_KEY.txt
-  XDG_CACHE_HOME          cache location, default ~/.cache/jev-cli
+  XDG_CACHE_HOME          cache location, default ~/.cache/jev-lm
 `;
 
 function parseArgs(argv: readonly string[]): Parsed | { error: string } {
@@ -275,7 +275,7 @@ export async function main(argv: readonly string[]): Promise<number> {
   const parsed = parseArgs(argv);
   if ("error" in parsed) {
     console.error(`error: ${parsed.error}`);
-    console.error("run jev-cli --help for usage");
+    console.error("run jev-lm --help for usage");
     return 1;
   }
   if (booleanFlag(parsed, "--help") || booleanFlag(parsed, "-h")) {
@@ -303,7 +303,7 @@ export async function main(argv: readonly string[]): Promise<number> {
         return await commandEval(parsed);
       default:
         console.error(`error: unknown command ${parsed.command}`);
-        console.error("run jev-cli --help for usage");
+        console.error("run jev-lm --help for usage");
         return 1;
     }
   } catch (error) {

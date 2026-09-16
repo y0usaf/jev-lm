@@ -1,4 +1,4 @@
-# jev-cli
+# Jev-LM
 
 A word-level language model whose output layer is Jev. Jev never emits text, so
 everything an LLM normally hides lives in this code: the tokenizer, the sampler, the
@@ -7,7 +7,7 @@ repetition mask, the stop rule, and a verified-chunk path that stands in for a K
 One HTTP request per round trip, zero dependencies, Node 18 or newer.
 
 ```bash
-npx jev-cli gen "she went to the door" --draft --trace
+npx jev-lm gen "she went to the door" --draft --trace
 ```
 
 ```
@@ -23,9 +23,9 @@ tokens=9 round-trips=2 tokens/round-trip=4.50 stop=done
 ## Install
 
 ```bash
-npx jev-cli --help          # no install
-npm install -g jev-cli      # global
-npm install jev-cli         # library
+npx jev-lm --help          # no install
+npm install -g jev-lm      # global
+npm install jev-lm         # library
 ```
 
 Set a key one of three ways: `TYPESAFE_API_KEY`, a file named by `TYPESAFE_API_KEY_FILE`,
@@ -34,11 +34,11 @@ or `~/Tokens/TYPESAFE_API_KEY.txt`.
 ## Commands
 
 ```bash
-jev-cli probe "the little dog was" --top 5
-jev-cli verify "the capital of france is" "paris" "london"
-jev-cli gen "the little dog" --words 18 --trace
-jev-cli gen "she went to the door" --draft --trace
-jev-cli eval --file data/heldout_en.txt --positions 60
+jev-lm probe "the little dog was" --top 5
+jev-lm verify "the capital of france is" "paris" "london"
+jev-lm gen "the little dog" --words 18 --trace
+jev-lm gen "she went to the door" --draft --trace
+jev-lm eval --file data/heldout_en.txt --positions 60
 ```
 
 `probe` shows the next-word distribution. `verify` scores candidate continuations with
@@ -48,7 +48,7 @@ baseline over the same vocabulary.
 As a library:
 
 ```ts
-import { JevClient, Vocab, WordLM, Drafter } from "jev-cli";
+import { JevClient, Vocab, WordLM, Drafter } from "jev-lm";
 
 const client = new JevClient();
 const vocab = Vocab.load();
@@ -61,7 +61,7 @@ console.log(generation.text, generationReport(generation));
 console.log(client.usage.toString());
 ```
 
-Answers are cached under `XDG_CACHE_HOME` or `~/.cache/jev-cli`, keyed by a hash of the
+Answers are cached under `XDG_CACHE_HOME` or `~/.cache/jev-lm`, keyed by a hash of the
 state, the questions, and the model, so re-running an eval costs nothing. `--no-cache`
 turns that off.
 

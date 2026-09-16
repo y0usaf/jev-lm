@@ -150,7 +150,7 @@ export class JevClient {
     this.retries = options.retries ?? 4;
     this.maxCalls = options.maxCalls ?? 0;
     this.verbose = options.verbose ?? false;
-    const cacheDir = options.cacheDir === undefined ? "~/.cache/jev-cli" : options.cacheDir;
+    const cacheDir = options.cacheDir === undefined ? "~/.cache/jev-lm" : options.cacheDir;
     this.cacheDir = cacheDir === null ? null : expandHome(cacheDir);
     if (this.cacheDir !== null) mkdirSync(this.cacheDir, { recursive: true });
   }
