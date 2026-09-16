@@ -1,0 +1,52 @@
+{
+  "name": "jev-cli",
+  "version": "0.1.0",
+  "description": "A word-level language model whose output layer is Jev: one request per round trip, an n-gram drafter, and Noul verification.",
+  "license": "MIT",
+  "author": "y0usaf",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "bin": {
+    "jev-cli": "dist/cli.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "data",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "llm",
+    "language-model",
+    "text-generation",
+    "typesafe",
+    "jev",
+    "noul",
+    "cli",
+    "sampling"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "check": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/y0usaf/jev-cli.git"
+  },
+  "sideEffects": false
+}
